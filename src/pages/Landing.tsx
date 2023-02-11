@@ -1,25 +1,20 @@
 import React, { useState } from "react"
-import { motion } from "framer-motion"
-import { Testing } from "../components/Testing"
-import { Logo } from "../components/Logo"
+import { Variants, motion } from "framer-motion"
 import { css } from "@emotion/react"
 
-const style = {
-	header: css({
-		height: "100px",
-		backgroundColor: "#00000057",
-	}),
-}
+const style = {}
+
+const varaints = {
+	hidden: {},
+	shown: {},
+} as Variants
 
 export const Landing = () => {
 	return (
-		<div className="landing-page">
-			<header css={style.header}>
-				<Logo />
-			</header>
-			<div className="testing">
-				<Testing />
-			</div>
-		</div>
+		<>
+			<motion.h1 initial={{ x: "-100vw" }} animate={{ x: "0" }}>
+				Home
+			</motion.h1>
+		</>
 	)
 }
