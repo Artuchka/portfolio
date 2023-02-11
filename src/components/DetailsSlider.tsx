@@ -1,4 +1,10 @@
-import React, { MouseEvent, useEffect, useRef, useState } from "react"
+import React, {
+	MouseEvent,
+	TouchEvent,
+	useEffect,
+	useRef,
+	useState,
+} from "react"
 import {
 	PanInfo,
 	motion,
@@ -181,6 +187,13 @@ export const DetailsSlider = () => {
 		showSelectedItem()
 	}, [selectedProjectIndex])
 
+	const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+		setDragStart({
+			startX: e.touches[0].pageX,
+			isDragging: true,
+		})
+	}
+
 	const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
 		setDragStart({
 			startX: e.pageX,
@@ -188,25 +201,59 @@ export const DetailsSlider = () => {
 		})
 	}
 
+	const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+		if (!isDragging) return
+		const diff = (startX - e.touches[0].pageX) / 50
+		console.log({ setting: offset.get() - diff })
+
+		listingControls.start({
+			x: offset.get() - diff,
+			transition: {
+				duration: 0.001,
+			},
+		})
+	}
 	const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
 		if (!isDragging) return
 		const diff = (startX - e.pageX) / 50
-		// console.log({ setting: offset.get() - diff })
+		console.log({ setting: offset.get() - diff })
 
-		listingControls.set({ x: offset.get() - diff })
+		listingControls.start({
+			x: offset.get() - diff,
+			transition: {
+				duration: 0.001,
+			},
+		})
 	}
 
+	const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+		if (!isDragging) return
+		setDragStart((prev) => ({ ...prev, isDragging: false }))
+
+		const diff = startX - e.changedTouches[0].pageX
+
+		const itemWidth = getItemWidth()
+
+		if (Math.abs(diff) < 100) {
+			showSelectedItem()
+		}
+
+		if (diff < 0 && Math.abs(diff) > itemWidth / 4) {
+			handlePrev()
+		} else if (diff > 0 && diff > itemWidth / 4) {
+			handleNext()
+		} else {
+			showSelectedItem()
+		}
+	}
 	const handleMouseUp = (e: MouseEvent<HTMLDivElement>) => {
 		if (!isDragging) return
 		setDragStart((prev) => ({ ...prev, isDragging: false }))
+
 		const diff = startX - e.pageX
 
 		const itemWidth = getItemWidth()
 
-		// console.log("--------------------")
-		// console.log({ itemWidth: itemWidth / 2 })
-		// console.log({ diff })
-		// console.log("--------------------")
 		if (Math.abs(diff) < 100) {
 			showSelectedItem()
 		}
@@ -224,6 +271,9 @@ export const DetailsSlider = () => {
 		<div
 			className="layout-cards"
 			css={style.wrapper}
+			onTouchStart={handleTouchStart}
+			onTouchEnd={handleTouchEnd}
+			onTouchMove={handleTouchMove}
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}
 			onMouseMove={handleMouseMove}
