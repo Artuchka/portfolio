@@ -129,7 +129,7 @@ export const DetailsSlider = () => {
 		} else {
 			initialOffset.current = projects.length / 2 + 0.5
 		}
-	}, [])
+	}, [projects])
 
 	return (
 		<div className="layout-cards" css={style.wrapper}>
