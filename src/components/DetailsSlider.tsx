@@ -124,7 +124,11 @@ export const DetailsSlider = () => {
 	}, [selectedProjectIndex])
 
 	useEffect(() => {
-		initialOffset.current = Math.ceil(projects.length / 2)
+		if (projects.length % 2 === 1) {
+			initialOffset.current = Math.ceil(projects.length / 2)
+		} else {
+			initialOffset.current = projects.length / 2 + 0.5
+		}
 	}, [])
 
 	return (

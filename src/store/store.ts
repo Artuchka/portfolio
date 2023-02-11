@@ -44,13 +44,13 @@ const defaultProjects: ProjectItem[] = [
 		img: ozonImg,
 		uuid: "126",
 	},
-	{
-		title: "Ozon",
-		githubLink: "/",
-		demoLink: "/",
-		img: ozonImg,
-		uuid: "127",
-	},
+	// {
+	// 	title: "Ozon",
+	// 	githubLink: "/",
+	// 	demoLink: "/",
+	// 	img: ozonImg,
+	// 	uuid: "127",
+	// },
 ]
 
 export const projectsState = atom({
