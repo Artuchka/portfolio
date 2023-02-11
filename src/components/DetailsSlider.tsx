@@ -10,6 +10,7 @@ import {
 	listingOpenState,
 	projectsState,
 	selectedProjectIndexState,
+	selectedProjectUUIDState,
 } from "../store/store"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { css } from "@emotion/react"
@@ -17,7 +18,7 @@ import { primaryBg, primaryText, secondaryBg } from "../styles/emotion/vars"
 
 const style = {
 	wrapper: css({
-		position: "absolute",
+		position: "fixed",
 		inset: "0",
 		zIndex: 10000,
 		display: "flex",
@@ -72,6 +73,7 @@ export const DetailsSlider = () => {
 	const [pointerEvents, setPointerEvents] = useState(true)
 	console.log({ selectedProjectIndex })
 	const projects = useRecoilValue(projectsState)
+	const selectedProjectUUID = useRecoilValue(selectedProjectUUIDState)
 	const listingControls = useAnimation()
 	const offset = useMotionValue(0)
 
@@ -86,6 +88,13 @@ export const DetailsSlider = () => {
 	// const handlePan = (e: any, info: PanInfo) => {
 	// 	listingControls.set({ x: info.offset.x })
 	// }
+
+	useEffect(() => {
+		const foundIndex = projects.findIndex(
+			(item) => item.uuid === selectedProjectUUID
+		)
+		setSelectedProjectIndex(foundIndex)
+	}, [])
 
 	const handleNext = async () => {
 		setSelectedProjectIndex((prev) => {

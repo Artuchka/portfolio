@@ -7,7 +7,12 @@ import { AiOutlineEye } from "react-icons/ai"
 import { css } from "@emotion/react"
 import { motion } from "framer-motion"
 import { primaryBg, secondaryBg } from "../styles/emotion/vars"
-import { ProjectItem, listingOpenState } from "../store/store"
+import {
+	ProjectItem,
+	listingOpenState,
+	selectedProjectIndexState,
+	selectedProjectUUIDState,
+} from "../store/store"
 import { useSetRecoilState } from "recoil"
 
 const style = {
@@ -76,10 +81,12 @@ export const ProjectGridItem: FC<ProjectItem> = ({
 	uuid,
 }) => {
 	const setListingOpen = useSetRecoilState(listingOpenState)
+	const setSelectedUUID = useSetRecoilState(selectedProjectUUIDState)
 
 	const handleDetailsOpen = (e: any) => {
 		console.log("opening details")
 		setListingOpen(true)
+		setSelectedUUID(uuid)
 	}
 	return (
 		<div css={style.cardWrapper}>

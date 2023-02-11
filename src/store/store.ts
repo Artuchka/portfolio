@@ -62,6 +62,10 @@ export const selectedProjectIndexState = atom({
 	key: "projectsDetailed",
 	default: 0,
 })
+export const selectedProjectUUIDState = atom({
+	key: "projectsDetailed",
+	default: "",
+})
 
 export const listingOpenState = atom({
 	key: "listingOpenState",
