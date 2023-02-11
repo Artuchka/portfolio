@@ -5,6 +5,7 @@ import { DefaultLayout } from "./Layouts/DefaultLayout"
 import { NotFound } from "./pages/NotFound"
 import { About } from "./pages/About"
 import { AnimatePresence } from "framer-motion"
+import { Projects } from "./pages/Projects"
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/" element={<DefaultLayout />}>
 					<Route path="/" element={<Landing />}></Route>
 					<Route path="/about" element={<About />}></Route>
+					<Route path="/projects" element={<Projects />}></Route>
 					<Route path="*" element={<NotFound />}></Route>
 				</Route>
 			</Routes>
