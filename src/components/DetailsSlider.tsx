@@ -21,6 +21,7 @@ import {
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { css } from "@emotion/react"
 import { primaryBg, primaryText, secondaryBg } from "../styles/emotion/vars"
+import { scrollbar } from "../styles/emotion/scrollbar"
 
 const style = {
 	wrapper: css({
@@ -46,11 +47,15 @@ const style = {
 		alignItems: "center",
 		gap: "1rem",
 	}),
-	listingItem: css({
-		backgroundColor: "white",
-		minWidth: "70vw",
-		minHeight: "30vw",
-	}),
+	listingItem: [
+		css({
+			backgroundColor: "white",
+			minWidth: "70vw",
+			maxHeight: "70vh",
+			overflowY: "auto",
+		}),
+		scrollbar("0.5rem", "rectangle"),
+	],
 	buttonsWrapper: css({
 		display: "flex",
 		justifyContent: "center",
@@ -58,7 +63,7 @@ const style = {
 		gap: "1rem",
 		position: "fixed",
 		zIndex: 10,
-		top: "85vh",
+		top: "87vh",
 	}),
 	buttonItem: css({
 		background: secondaryBg,
@@ -298,20 +303,63 @@ export const DetailsSlider = () => {
 				ref={listingRef}
 			>
 				{projects.map((card, i) => {
-					let optsNext = {}
-
 					return (
 						<motion.div
 							data-uuid={card.uuid}
 							key={card.uuid}
 							css={style.listingItem}
-							{...optsNext}
 						>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Nihil, sunt. Lorem, ipsum dolor sit amet
-							consectetur adipisicing elit. Ratione totam
-							blanditiis id tempore recusandae expedita possimus
-							iste laborum iusto vel!
+							<h1>#{i}</h1>
+							<p>
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Placeat sint dicta unde amet
+								perferendis nobis fugiat voluptates magni quos
+								quisquam beatae dignissimos numquam, enim odio
+								ratione assumenda molestiae veniam, a
+								aspernatur! Architecto similique non quisquam
+								pariatur! Pariatur quia odit itaque perferendis
+								dolorum rerum ad minima, minus ab inventore
+								natus voluptate dicta autem ex suscipit adipisci
+								aliquid? Expedita id tempora dignissimos ducimus
+								impedit, non, recusandae ullam corrupti alias
+								perspiciatis modi illo? Officiis, ipsa
+								repudiandae? Pariatur sit officia asperiores
+								dicta saepe, maxime itaque enim id ipsum, unde
+								tenetur, veniam laborum? Impedit quae dolores
+								recusandae maiores nemo ad quibusdam aut illo
+								vitae voluptatibus?
+							</p>
+							<p>
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Placeat sint dicta unde amet
+								perferendis nobis fugiat voluptates magni quos
+								quisquam beatae dignissimos numquam, enim odio
+								ratione assumenda molestiae veniam, a
+								aspernatur! Architecto similique non quisquam
+								pariatur! Pariatur quia odit itaque perferendis
+								dolorum rerum ad minima, minus ab inventore
+								natus voluptate dicta autem ex suscipit adipisci
+								aliquid? Expedita id tempora dignissimos ducimus
+								impedit, non, recusandae ullam corrupti alias
+								perspiciatis modi illo? Officiis, ipsa
+								repudiandae? Pariatur sit officia asperiores
+								dicta saepe, maxime itaque enim id ipsum, unde
+								tenetur, veniam laborum? Impedit quae dolores
+								recusandae maiores nemo ad quibusdam aut illo
+								vitae voluptatibus?
+							</p>
+							<p>
+								Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Placeat sint dicta unde amet
+								perferendis nobis fugiat voluptates magni quos
+								quisquam beatae dignissimos numquam, enim odio
+								ratione assumenda molestiae veniam, a
+								aspernatur! Architecto similique non quisquam
+								pariatur! Pariatur quia odit itaque perferendis
+								dolorum rerum ad minima, minus ab inventore
+								natus voluptate dicta autem ex suscipit adipisci
+								aliquid?
+							</p>
 						</motion.div>
 					)
 				})}
@@ -346,68 +394,3 @@ export const DetailsSlider = () => {
 		</div>
 	)
 }
-
-// const Flashcards = () => {
-// 	const [{ startX, startScrollLeft, isDragging }, setDragStart] = useState({
-// 		startX: 0,
-// 		startScrollLeft: 0,
-// 		isDragging: false,
-// 	})
-// 	const containerRef = useRef(document.createElement("div"))
-// 	const cardRefs = useRef(new Array())
-// 	useEffect(() => {
-// 		const { scrollWidth, clientWidth } = containerRef.current
-// 		const halfScroll = (scrollWidth - clientWidth) / 2
-// 		containerRef.current.scrollLeft = halfScroll
-// 	}, [containerRef.current])
-
-// 	const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
-// 		setDragStart({
-// 			startX: e.pageX - containerRef.current.offsetLeft,
-// 			startScrollLeft: containerRef?.current?.scrollLeft,
-// 			isDragging: true,
-// 		})
-// 	}
-// 	const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-// 		if (!isDragging || selectedCard) return
-// 		const x = e.pageX - containerRef.current.offsetLeft
-// 		const walk = x - startX
-// 		containerRef.current.scrollLeft = startScrollLeft - walk
-// 	}
-// 	const selectCard = (card) => {
-// 		cardRefs.current[card - 1].scrollIntoView({
-// 			behavior: "smooth",
-// 			block: "nearest",
-// 			inline: "center",
-// 		})
-// 	}
-// 	const handleCardMouseUp = (e: MouseEvent<HTMLDivElement>, card) => {
-// 		if (isDragging) {
-// 			const x = e.pageX - containerRef.current.offsetLeft
-// 			const walk = x - startX
-// 			if (Math.abs(walk) < 5) selectCard(card)
-// 		} else selectCard(card)
-// 	}
-// 	return (
-// 		<div
-// 			className="flashcards"
-// 			onMouseDown={handleMouseDown}
-// 			onMouseUp={() =>
-// 				setDragStart((prev) => ({ ...prev, isDragging: false }))
-// 			}
-// 			onMouseMove={handleMouseMove}
-// 		>
-// 			<div className="flashcards__container" ref={containerRef}>
-// 				{cards.map((card, i) => (
-// 					<motion.div
-// 						className="card"
-// 						key={card}
-// 						ref={(el) => cardRefs.current.push(el)}
-// 						onMouseUp={(e) => handleCardMouseUp(e, card)}
-
-// 					/>
-// 				))}
-// 			</div>
-// 		</div>
-// 	)
-// }
