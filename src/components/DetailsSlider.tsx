@@ -9,21 +9,21 @@ import {
 import {
 	listingOpenState,
 	projectsState,
-	selectedProjectIDState,
+	selectedProjectIndexState,
 } from "../store/store"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { css } from "@emotion/react"
+import { primaryBg, primaryText, secondaryBg } from "../styles/emotion/vars"
 
 const style = {
 	wrapper: css({
-		position: "fixed",
-		// top: "50%",
-		// left: "50%",
+		position: "absolute",
 		inset: "0",
 		zIndex: 10000,
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
+		overflow: "hidden",
 	}),
 	backdrop: css({
 		position: "fixed",
@@ -40,16 +40,37 @@ const style = {
 	}),
 	listingItem: css({
 		backgroundColor: "white",
+		minWidth: "70vw",
+		minHeight: "30vw",
+	}),
+	buttonsWrapper: css({
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		gap: "1rem",
+		position: "fixed",
+		zIndex: 10,
+		top: "85vh",
+	}),
+	buttonItem: css({
+		background: secondaryBg,
+		border: "none",
+		padding: "1rem",
+		color: primaryText,
+		cursor: "pointer",
 	}),
 }
+
 export const DetailsSlider = () => {
 	const setListingOpen = useSetRecoilState(listingOpenState)
 
-	const [selectedProjectID, setSelectedProjectID] = useRecoilState(
-		selectedProjectIDState
+	const listingRef = useRef(document.createElement("div"))
+	const initialOffset = useRef(0)
+	const [selectedProjectIndex, setSelectedProjectIndex] = useRecoilState(
+		selectedProjectIndexState
 	)
 	const [pointerEvents, setPointerEvents] = useState(true)
-
+	console.log({ selectedProjectIndex })
 	const projects = useRecoilValue(projectsState)
 	const listingControls = useAnimation()
 	const offset = useMotionValue(0)
@@ -70,9 +91,40 @@ export const DetailsSlider = () => {
 		listingControls.start({
 			opacity: 1,
 			transition: {
-				duration: 1,
+				duration: 0.5,
 			},
 		})
+	}, [])
+
+	const handleNext = async () => {
+		setSelectedProjectIndex((prev) => {
+			if (prev + 1 < projects.length) {
+				return prev + 1
+			}
+			return 0
+		})
+	}
+	const handlePrev = async () => {
+		setSelectedProjectIndex((prev) => {
+			if (prev - 1 >= 0) {
+				return prev - 1
+			}
+			return projects.length - 1
+		})
+	}
+	useEffect(() => {
+		const listingWidth = listingRef.current.getBoundingClientRect().width
+		const itemWidth = listingWidth / projects.length
+		const newOffset =
+			(projects.length - selectedProjectIndex - initialOffset.current) *
+			itemWidth
+
+		console.log({ initialOffset: initialOffset.current })
+		listingControls.start({ x: newOffset })
+	}, [selectedProjectIndex])
+
+	useEffect(() => {
+		initialOffset.current = Math.ceil(projects.length / 2)
 	}, [])
 
 	return (
@@ -84,23 +136,46 @@ export const DetailsSlider = () => {
 					opacity: 0,
 				}}
 				css={style.listing}
-				layout
 				style={{
 					x: offset,
 					userSelect: "none",
 				}}
-				onPanStart={handlePanStart}
-				onPan={handlePan}
-				onPanEnd={handlePanEnd}
+				ref={listingRef}
 			>
-				{projects.map((card, i) => (
-					<motion.div key={card.uuid} css={style.listingItem}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Nihil, sunt. Lorem, ipsum dolor sit amet consectetur
-						adipisicing elit. Ratione totam blanditiis id tempore
-						recusandae expedita possimus iste laborum iusto vel!
-					</motion.div>
-				))}
+				{projects.map((card, i) => {
+					let optsNext = {}
+
+					return (
+						<motion.div
+							data-uuid={card.uuid}
+							key={card.uuid}
+							css={style.listingItem}
+							{...optsNext}
+						>
+							Lorem ipsum dolor sit amet consectetur adipisicing
+							elit. Nihil, sunt. Lorem, ipsum dolor sit amet
+							consectetur adipisicing elit. Ratione totam
+							blanditiis id tempore recusandae expedita possimus
+							iste laborum iusto vel!
+						</motion.div>
+					)
+				})}
+			</motion.div>
+			<motion.div
+				css={style.buttonsWrapper}
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{
+					opacity: 0,
+				}}
+				transition={{ duration: 0.5 }}
+			>
+				<button css={style.buttonItem} onClick={handlePrev}>
+					prev
+				</button>
+				<button css={style.buttonItem} onClick={handleNext}>
+					next
+				</button>
 			</motion.div>
 			<motion.div
 				className="dim-layer"
@@ -111,7 +186,7 @@ export const DetailsSlider = () => {
 				exit={{
 					opacity: 0,
 				}}
-				transition={{ duration: 1 }}
+				transition={{ duration: 0.5 }}
 			/>
 		</div>
 	)

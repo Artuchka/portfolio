@@ -58,9 +58,9 @@ export const projectsState = atom({
 	default: defaultProjects,
 })
 
-export const selectedProjectIDState = atom({
+export const selectedProjectIndexState = atom({
 	key: "projectsDetailed",
-	default: "",
+	default: 0,
 })
 
 export const listingOpenState = atom({

@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { useRecoilValue } from "recoil"
 import { listingOpenState } from "../store/store"
 import { AnimatePresence } from "framer-motion"
+import { css } from "@emotion/react"
 
 export const Projects = () => {
 	const isListingOpen = useRecoilValue(listingOpenState)
@@ -12,9 +13,12 @@ export const Projects = () => {
 		<div>
 			<h1>Projects</h1>
 			<ProjectsGrid />
-			<AnimatePresence>
-				{isListingOpen && <DetailsSlider />}
-			</AnimatePresence>
+			{createPortal(
+				<AnimatePresence>
+					{isListingOpen && <DetailsSlider />}
+				</AnimatePresence>,
+				document.body
+			)}
 		</div>
 	)
 }
