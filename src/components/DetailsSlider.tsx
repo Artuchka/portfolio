@@ -75,26 +75,17 @@ export const DetailsSlider = () => {
 	const listingControls = useAnimation()
 	const offset = useMotionValue(0)
 
-	const handlePanEnd = (e: any, info: PanInfo) => {
-		// setPointerEvents(true)
-	}
+	// const handlePanEnd = (e: any, info: PanInfo) => {
+	// 	// setPointerEvents(true)
+	// }
 
-	const handlePanStart = (e: any, info: PanInfo) => {
-		// setPointerEvents(false)
-	}
+	// const handlePanStart = (e: any, info: PanInfo) => {
+	// 	// setPointerEvents(false)
+	// }
 
-	const handlePan = (e: any, info: PanInfo) => {
-		listingControls.set({ x: info.offset.x })
-	}
-
-	useEffect(() => {
-		listingControls.start({
-			opacity: 1,
-			transition: {
-				duration: 0.5,
-			},
-		})
-	}, [])
+	// const handlePan = (e: any, info: PanInfo) => {
+	// 	listingControls.set({ x: info.offset.x })
+	// }
 
 	const handleNext = async () => {
 		setSelectedProjectIndex((prev) => {
@@ -112,7 +103,33 @@ export const DetailsSlider = () => {
 			return projects.length - 1
 		})
 	}
+
 	useEffect(() => {
+		listingControls.start({
+			opacity: 1,
+			transition: {
+				duration: 0.5,
+			},
+		})
+	}, [])
+
+	const calculateOffset = () => {
+		console.log("recalculating offset")
+		if (projects.length % 2 === 1) {
+			initialOffset.current = Math.ceil(projects.length / 2)
+		} else {
+			initialOffset.current = projects.length / 2 + 0.5
+		}
+	}
+
+	useEffect(() => {
+		console.log({ len: projects.length })
+		calculateOffset()
+	}, [projects])
+	useEffect(() => {
+		if (initialOffset.current === 0) {
+			calculateOffset()
+		}
 		const listingWidth = listingRef.current.getBoundingClientRect().width
 		const itemWidth = listingWidth / projects.length
 		const newOffset =
@@ -122,14 +139,6 @@ export const DetailsSlider = () => {
 		console.log({ initialOffset: initialOffset.current })
 		listingControls.start({ x: newOffset })
 	}, [selectedProjectIndex])
-
-	useEffect(() => {
-		if (projects.length % 2 === 1) {
-			initialOffset.current = Math.ceil(projects.length / 2)
-		} else {
-			initialOffset.current = projects.length / 2 + 0.5
-		}
-	}, [projects])
 
 	return (
 		<div className="layout-cards" css={style.wrapper}>
