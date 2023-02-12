@@ -8,6 +8,13 @@ import minesweeperImg from "./../assets/images/MinesweeperFunc.jpg"
 import weatherImg from "./../assets/images/MinesweeperFunc.jpg"
 import pokedexImg from "./../assets/images/pokedex.jpg"
 import inviteListImg from "./../assets/images/inviteList.jpg"
+import converterImg from "./../assets/images/converter.jpg"
+import notesImg from "./../assets/images/notes.jpg"
+import larixImg from "./../assets/images/larix.jpg"
+import homesmartImg from "./../assets/images/homesmart.jpg"
+import carbonexImg from "./../assets/images/carbonex.jpg"
+import monamourImg from "./../assets/images/monamour2.jpg"
+import getWashImg from "./../assets/images/getWash.jpg"
 
 type StackKeys = "back" | "front"
 export type ProjectItem = {
@@ -105,13 +112,13 @@ const defaultProjects: ProjectItem[] = [
 		img: minesweeperImg,
 		uuid: crypto.randomUUID(),
 	},
-	{
-		title: "Weather Forecast",
-		githubLink: "https://github.com/Artuchka/weather_forecast/tree/main",
-		demoLink: "https://weather-front-6y11.onrender.com/",
-		img: weatherImg,
-		uuid: crypto.randomUUID(),
-	},
+	// {
+	// 	title: "Weather Forecast",
+	// 	githubLink: "https://github.com/Artuchka/weather_forecast/tree/main",
+	// 	demoLink: "https://weather-front-6y11.onrender.com/",
+	// 	img: weatherImg,
+	// 	uuid: crypto.randomUUID(),
+	// },
 	{
 		title: "Pokedex",
 		githubLink: "https://github.com/Artuchka/pokedex",
@@ -124,6 +131,56 @@ const defaultProjects: ProjectItem[] = [
 		githubLink: "https://github.com/Artuchka/css-training",
 		demoLink: "https://invite-list.netlify.app/",
 		img: inviteListImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Converter",
+		githubLink: "https://github.com/Artuchka/6projects/tree/converter",
+		demoLink: "https://metrical-converter.netlify.app/",
+		img: converterImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Notes",
+		githubLink: "https://github.com/Artuchka/trelloResult",
+		demoLink: "https://artuchka.github.io/trelloResult/",
+		img: notesImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #1",
+		githubLink: "https://github.com/Artuchka/larix",
+		demoLink: "https://artuchka.github.io/larix/",
+		img: larixImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #2",
+		githubLink: "https://github.com/Artuchka/homesmart_result",
+		demoLink: "https://artuchka.github.io/homesmart_result/#",
+		img: homesmartImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #3",
+		githubLink: "https://github.com/Artuchka/carbonex_webpack_super_nice",
+		demoLink:
+			"https://artuchka.github.io/carbonex_webpack_super_nice/pages/index.html",
+		img: carbonexImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #4",
+		githubLink: "https://github.com/Artuchka/monamour",
+		demoLink: "https://artuchka.github.io/monamour/",
+		img: monamourImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #5",
+		githubLink: "https://github.com/Artuchka/get_wash_landing",
+		demoLink: "https://artuchka.github.io/get_wash_landing/",
+		img: getWashImg,
 		uuid: crypto.randomUUID(),
 	},
 ]

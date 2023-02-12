@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react"
+import React, { FC, ReactNode, useEffect, useState } from "react"
 import { AnimatePresence, Variants, motion } from "framer-motion"
 import { Logo, greetingDuration } from "../components/Logo"
 import { css } from "@emotion/react"
@@ -40,6 +40,10 @@ const varaints = {
 
 export const DefaultLayout: FC = () => {
 	const location = useLocation()
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+	}, [location.pathname])
 	return (
 		<motion.div css={style.layout}>
 			<Header />
