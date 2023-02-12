@@ -22,6 +22,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { css } from "@emotion/react"
 import { primaryBg, primaryText, secondaryBg } from "../styles/emotion/vars"
 import { scrollbar } from "../styles/emotion/scrollbar"
+import { ProjectDetailedCard } from "./ProjectDetailedCard"
 
 const style = {
 	wrapper: css({
@@ -48,13 +49,14 @@ const style = {
 		gap: "1rem",
 	}),
 	listingItem: [
+		scrollbar("0.5rem", "rectangle"),
 		css({
 			backgroundColor: "white",
 			minWidth: "70vw",
 			maxHeight: "70vh",
+			minHeight: "40vh",
 			overflowY: "auto",
 		}),
-		scrollbar("0.5rem", "rectangle"),
 	],
 	buttonsWrapper: css({
 		display: "flex",
@@ -108,37 +110,6 @@ export const DetailsSlider = () => {
 		return itemWidth
 	}
 
-	const handlePanEnd = (e: any, info: PanInfo) => {
-		const itemWidth = getItemWidth()
-
-		const createdOffset = info.offset.x
-
-		console.log("--------------------")
-		console.log({ itemWidth: itemWidth / 2 })
-		console.log({ createdOffset })
-		console.log("--------------------")
-		if (Math.abs(createdOffset) < 100) {
-			showSelectedItem()
-		}
-
-		if (createdOffset < itemWidth / 2) {
-			handleNext()
-		} else if (createdOffset > itemWidth / 2) {
-			handlePrev()
-		} else {
-			showSelectedItem()
-		}
-	}
-
-	const handlePanStart = (e: any, info: PanInfo) => {
-		// setPointerEvents(false)
-	}
-
-	const handlePan = (e: any) => {
-		// if (!isDragging) return
-		// listingControls.set({ x: info.offset.x })
-	}
-
 	useEffect(() => {
 		const foundIndex = projects.findIndex(
 			(item) => item.uuid === selectedProjectUUID
@@ -173,7 +144,6 @@ export const DetailsSlider = () => {
 	}, [])
 
 	const calculateOffset = () => {
-		console.log("recalculating offset")
 		if (projects.length % 2 === 1) {
 			initialOffset.current = Math.ceil(projects.length / 2)
 		} else {
@@ -310,56 +280,7 @@ export const DetailsSlider = () => {
 							css={style.listingItem}
 						>
 							<h1>#{i}</h1>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Placeat sint dicta unde amet
-								perferendis nobis fugiat voluptates magni quos
-								quisquam beatae dignissimos numquam, enim odio
-								ratione assumenda molestiae veniam, a
-								aspernatur! Architecto similique non quisquam
-								pariatur! Pariatur quia odit itaque perferendis
-								dolorum rerum ad minima, minus ab inventore
-								natus voluptate dicta autem ex suscipit adipisci
-								aliquid? Expedita id tempora dignissimos ducimus
-								impedit, non, recusandae ullam corrupti alias
-								perspiciatis modi illo? Officiis, ipsa
-								repudiandae? Pariatur sit officia asperiores
-								dicta saepe, maxime itaque enim id ipsum, unde
-								tenetur, veniam laborum? Impedit quae dolores
-								recusandae maiores nemo ad quibusdam aut illo
-								vitae voluptatibus?
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Placeat sint dicta unde amet
-								perferendis nobis fugiat voluptates magni quos
-								quisquam beatae dignissimos numquam, enim odio
-								ratione assumenda molestiae veniam, a
-								aspernatur! Architecto similique non quisquam
-								pariatur! Pariatur quia odit itaque perferendis
-								dolorum rerum ad minima, minus ab inventore
-								natus voluptate dicta autem ex suscipit adipisci
-								aliquid? Expedita id tempora dignissimos ducimus
-								impedit, non, recusandae ullam corrupti alias
-								perspiciatis modi illo? Officiis, ipsa
-								repudiandae? Pariatur sit officia asperiores
-								dicta saepe, maxime itaque enim id ipsum, unde
-								tenetur, veniam laborum? Impedit quae dolores
-								recusandae maiores nemo ad quibusdam aut illo
-								vitae voluptatibus?
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Placeat sint dicta unde amet
-								perferendis nobis fugiat voluptates magni quos
-								quisquam beatae dignissimos numquam, enim odio
-								ratione assumenda molestiae veniam, a
-								aspernatur! Architecto similique non quisquam
-								pariatur! Pariatur quia odit itaque perferendis
-								dolorum rerum ad minima, minus ab inventore
-								natus voluptate dicta autem ex suscipit adipisci
-								aliquid?
-							</p>
+							<ProjectDetailedCard {...card} />
 						</motion.div>
 					)
 				})}

@@ -21,29 +21,46 @@ const style = {
 		borderRadius: "1rem",
 		overflow: "hidden",
 	}),
-	demoPicture: css({
-		height: "200px",
-		backgroundSize: "cover",
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
+	demoPicture: (imgSrc: string, bgPosition?: string) =>
+		css({
+			height: "200px",
 
-		"&:hover": {
-			div: {
-				opacity: 1,
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			justifyContent: "center",
+			position: "relative",
+
+			"&:after": {
+				backgroundSize: "cover",
+				backgroundImage: `url(${imgSrc})`,
+				backgroundPosition: bgPosition,
+				backgroundRepeat: "no-repeat",
+				content: '" "',
+				position: "absolute",
+				inset: 0,
+				transition: "all 400ms ease",
 			},
-		},
-	}),
+			"&:hover": {
+				"&:after": {
+					filter: "blur(5px)",
+					opacity: 0.6,
+				},
+				div: {
+					opacity: 1,
+				},
+			},
+		}),
 
-	iconWrapper: css({
+	linksWrapper: css({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
 		gap: "1rem",
 		opacity: 0,
-		transition: "opacity 0.5s ease",
+		transition: "opacity 400ms ease",
+		zIndex: 1,
 	}),
 
 	icon: css({
@@ -90,17 +107,12 @@ export const ProjectGridItem: FC<ProjectItem> = ({
 	}
 	return (
 		<div css={style.cardWrapper}>
-			<div
-				style={{
-					backgroundImage: `url(${img})`,
-				}}
-				css={style.demoPicture}
-			>
-				<div css={style.iconWrapper} className="hidden">
-					<a href={githubLink} css={style.icon}>
+			<div css={style.demoPicture(img, "center 0")}>
+				<div css={style.linksWrapper} className="hidden">
+					<a target="_blank" href={githubLink} css={style.icon}>
 						<BsGithub /> Github
 					</a>
-					<a href={demoLink} css={style.icon}>
+					<a target="_blank" href={demoLink} css={style.icon}>
 						<AiOutlineEye /> Demo
 					</a>
 				</div>

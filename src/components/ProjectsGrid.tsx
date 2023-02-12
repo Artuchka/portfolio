@@ -10,6 +10,7 @@ const style = {
 		display: "grid",
 		gap: "1rem",
 		width: "100%",
+		paddingBottom: "10rem",
 		[mq[1]]: {
 			gridTemplateColumns: "repeat(2,1fr)",
 		},
