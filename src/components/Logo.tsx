@@ -1,4 +1,5 @@
 import React from "react"
+import logoImg from "./../assets/avatar.jpeg"
 import { Variants, motion } from "framer-motion"
 import { css } from "@emotion/react"
 import { NavLink } from "react-router-dom"
@@ -16,6 +17,12 @@ const logoStyle = css({
 const aStyle = css({
 	textDecoration: "none",
 	color: "var(--primary-text)",
+	img: {
+		borderRadius: "50%",
+		aspectRatio: "1/1",
+		width: "3rem",
+		overflow: "hidden",
+	},
 })
 
 export const greetingDuration = 1
@@ -48,7 +55,7 @@ export const Logo = () => {
 			css={logoStyle}
 		>
 			<NavLink css={aStyle} to="/">
-				Logo
+				<img src={logoImg} alt="" />
 			</NavLink>
 		</motion.div>
 	)

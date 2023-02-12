@@ -15,6 +15,7 @@ import homesmartImg from "./../assets/images/homesmart.jpg"
 import carbonexImg from "./../assets/images/carbonex.jpg"
 import monamourImg from "./../assets/images/monamour2.jpg"
 import getWashImg from "./../assets/images/getWash.jpg"
+import burgerImg from "./../assets/images/burger.jpg"
 
 type StackKeys = "back" | "front"
 export type ProjectItem = {
@@ -181,6 +182,13 @@ const defaultProjects: ProjectItem[] = [
 		githubLink: "https://github.com/Artuchka/get_wash_landing",
 		demoLink: "https://artuchka.github.io/get_wash_landing/",
 		img: getWashImg,
+		uuid: crypto.randomUUID(),
+	},
+	{
+		title: "Landing #6",
+		githubLink: "https://github.com/Artuchka/burger_landing",
+		demoLink: "https://artuchka.github.io/burger_landing/",
+		img: burgerImg,
 		uuid: crypto.randomUUID(),
 	},
 ]
