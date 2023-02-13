@@ -20,7 +20,12 @@ import {
 } from "../store/store"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import { css } from "@emotion/react"
-import { primaryBg, primaryText, secondaryBg } from "../styles/emotion/vars"
+import {
+	cardBg,
+	primaryBg,
+	primaryText,
+	secondaryBg,
+} from "../styles/emotion/vars"
 import { scrollbar } from "../styles/emotion/scrollbar"
 import { ProjectDetailedCard } from "./ProjectDetailedCard"
 
@@ -51,7 +56,7 @@ const style = {
 	listingItem: [
 		scrollbar("0.5rem", "rectangle"),
 		css({
-			backgroundColor: "white",
+			backgroundColor: cardBg,
 			minWidth: "70vw",
 			maxHeight: "70vh",
 			minHeight: "40vh",
@@ -179,7 +184,7 @@ export const DetailsSlider = () => {
 	const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
 		if (!isDragging) return
 		const diff = (startX - e.touches[0].pageX) / 50
-		console.log({ setting: offset.get() - diff })
+		// console.log({ setting: offset.get() - diff })
 
 		listingControls.start({
 			x: offset.get() - diff,
@@ -191,7 +196,7 @@ export const DetailsSlider = () => {
 	const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
 		if (!isDragging) return
 		const diff = (startX - e.pageX) / 50
-		console.log({ setting: offset.get() - diff })
+		// console.log({ setting: offset.get() - diff })
 
 		listingControls.start({
 			x: offset.get() - diff,
@@ -279,7 +284,7 @@ export const DetailsSlider = () => {
 							key={card.uuid}
 							css={style.listingItem}
 						>
-							<h1>#{i}</h1>
+							<h1>#{i + 1}</h1>
 							<ProjectDetailedCard {...card} />
 						</motion.div>
 					)
