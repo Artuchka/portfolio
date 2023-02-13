@@ -19,6 +19,7 @@ export const btn = css({
 export const btnLight = css({
 	backgroundColor: primaryBg,
 	// borderRadius: "16px",
+	width: "100%",
 	padding: "0.8rem 2rem",
 	border: "none",
 	boxShadow:

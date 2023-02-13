@@ -1,5 +1,7 @@
 import { atom } from "recoil"
-import ozonImg from "./../assets/images/ozon.png"
+import ozonImg from "./../assets/images/ozon3.png"
+import jobsterImg from "./../assets/images/jobster.png"
+import comfyImg from "./../assets/images/comfy.png"
 import pizzaImg from "./../assets/images/pizza.jpg"
 import calendarImg from "./../assets/images/calendarCropped.jpg"
 import todoImg from "./../assets/images/TodoLogo.jpg"
@@ -16,6 +18,8 @@ import carbonexImg from "./../assets/images/carbonex.jpg"
 import monamourImg from "./../assets/images/monamour2.jpg"
 import getWashImg from "./../assets/images/getWash.jpg"
 import burgerImg from "./../assets/images/burger.jpg"
+import cocktailsImg from "./../assets/images/cocktails.png"
+import githubImg from "./../assets/images/github.jpg"
 
 type StackKeys = "back" | "front" | "overall"
 
@@ -105,7 +109,111 @@ const defaultProjects: ProjectItem[] = [
 		   For hosting the server I chose "cyclic.sh", becauser it has generous free tier with no sleep
 		   `,
 	},
+	{
+		title: "Jobster",
+		githubLink: "https://github.com/Artuchka/jobster",
+		demoLink: "https://jobstat.netlify.app/",
 
+		githubBackendLink: "https://github.com/Artuchka/jobs_api",
+		backendDocsLink: "https://talented-foal-tutu.cyclic.app/api-docs/",
+
+		img: jobsterImg,
+		uuid: crypto.randomUUID(),
+
+		stack: {
+			back: [
+				"Node JS",
+				"Express",
+				"JWT",
+				"MongoDB",
+				"Mongoose",
+				"bcryptjs",
+				"Stripe",
+			],
+			front: [
+				"React",
+				"Typescript",
+				"Redux Toolkit",
+				"React Router Dom",
+				"SCSS",
+				"Tailwindcss",
+				"Recharts",
+				"moment.js",
+				"Vite",
+			],
+		},
+
+		description: `My motivation was to showcase part(!) of my cool skills on creating SinglePageApp via React library.\
+
+		There's access to view statistics of job interviews.
+		
+		And you're welocme for creating new jobs (loggined not as TestUser).
+		Update jobs.
+		Feel free to update profile.
+		Delete old job interviews.
+
+		For Backend file structure pattern is well known and common:
+
+		<route_name>Router.js at /routers folder for setting up routes
+		<route_name>Controller.js at /controllers folder for setting up controllers of specified route
+		<route_name>Model.js at /schemas folder for setting up MongoDB schema
+
+		"bcryptjs" is used for hashing passwords with salt before storing them in Database
+
+		"jsonwebtoken" is used for creating/decoding crypted Tokens, safely containing info about current user. JWT are stored in cookies.
+
+		For hosting the server I chose "cyclic.sh", becauser it has generous free tier with no sleep
+		`,
+	},
+	{
+		title: "ComfySloth",
+		githubLink: "https://github.com/Artuchka/mini-projects/tree/e-commerce",
+		demoLink: "https://comfortablesloth.netlify.app/",
+
+		githubBackendLink: "https://github.com/Artuchka/e-commerce-server",
+		backendDocsLink: "https://long-gray-helmet.cyclic.app/",
+
+		img: comfyImg,
+		uuid: crypto.randomUUID(),
+
+		stack: {
+			back: [
+				"Node JS",
+				"Express",
+				"JWT",
+				"MongoDB",
+				"Mongoose",
+				"bcryptjs",
+				"Stripe",
+			],
+			front: [
+				"React",
+				"Firebase",
+				"useReducer + ContextAPI",
+				"Netlify Serverless Functions",
+				"React Router Dom",
+				"SCSS",
+			],
+		},
+
+		description: `I had to use Netlify Serverless Functions to imitate server work with stripe.
+		useReducer with contextAPI almost turned out to be a hard-to-maintain mess, I didn't like it.
+		Firebase was really easy to use for Authorization purposes
+
+
+		Backend file structure pattern is well known and common:
+
+		<route_name>Router.js at /routers folder for setting up routes
+		<route_name>Controller.js at /controllers folder for setting up controllers of specified route
+		<route_name>Model.js at /models folder for setting up MongoDB schema
+		
+		"bcryptjs" is used for hashing passwords with salt before storing them in Database
+
+		"jsonwebtoken" with cookie-parser is used for creating\decoding crypted Tokens, safely containing info about current user. JWT are stored in cookies.
+
+		For hosting the server I chose "cyclic.sh", becauser it has generous free tier with no sleep
+		`,
+	},
 	{
 		title: "Calendar",
 		githubLink: "https://github.com/Artuchka/event-calendar",
@@ -209,6 +317,51 @@ const defaultProjects: ProjectItem[] = [
 	// 	img: weatherImg,
 	// 	uuid: crypto.randomUUID(),
 	// },
+	{
+		title: "Cocktails Wiki",
+		githubLink: "https://github.com/Artuchka/mini-projects/tree/cocktails",
+		demoLink: "https://wikicocktails.netlify.app/",
+		img: cocktailsImg,
+		uuid: crypto.randomUUID(),
+
+		stack: {
+			overall: [
+				"React",
+				"useReducer + ContextAPI",
+				"SCSS",
+				"React Router Dom",
+			],
+		},
+
+		description: `
+		useReducer with contextAPI was quite perfect to use in that small project.
+		`,
+	},
+	{
+		title: "Github User Statistics",
+		githubLink:
+			"https://github.com/Artuchka/mini-projects/tree/github-user-stats",
+		demoLink: "https://github-user-statistic.netlify.app/",
+		img: githubImg,
+		uuid: crypto.randomUUID(),
+
+		stack: {
+			overall: [
+				"React",
+				"useReducer + ContextAPI",
+				"FusionCharts",
+				"SCSS",
+				"React Router Dom",
+			],
+		},
+
+		description: `
+		useReducer with contextAPI was perfect to use in that small project.
+		FusionCharts were quite simple to use
+		Unfortunately, for security purposes I can't give full access to search github users, because my account may be suspended when limit reached
+
+		`,
+	},
 	{
 		title: "Pokedex",
 		githubLink: "https://github.com/Artuchka/pokedex",

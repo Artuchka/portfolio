@@ -50,7 +50,7 @@ const style = {
 		zIndex: 10,
 		display: "flex",
 		justifyContent: "center",
-		alignItems: "center",
+		// alignItems: "center",
 		gap: "1rem",
 	}),
 	listingItem: [

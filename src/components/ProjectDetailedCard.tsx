@@ -78,7 +78,7 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 			<div className="buttons" css={style.linksWrapper}>
 				<a target="_blank" href={githubLink}>
 					<button css={btnLight}>
-						<BsGithub /> Github
+						<BsGithub /> Github {githubBackendLink && "Frontend"}
 					</button>
 				</a>
 				<a target="_blank" href={demoLink}>
@@ -97,7 +97,7 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 				{backendDocsLink && (
 					<a target="_blank" href={backendDocsLink}>
 						<button css={btnLight}>
-							<AiOutlineEye /> Backend Docs
+							<AiOutlineEye /> REST API Docs
 						</button>
 					</a>
 				)}
