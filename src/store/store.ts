@@ -28,6 +28,8 @@ export interface ProjectItem extends DetailedInfo {
 }
 
 type DetailedInfo = Partial<{
+	githubBackendLink: string
+	backendDocsLink: string
 	stack: Partial<{ [key in StackKeys]: string[] }>
 	description: string
 	images: string[]
@@ -41,6 +43,9 @@ const defaultProjects: ProjectItem[] = [
 		title: "Ozon",
 		githubLink: "https://github.com/Artuchka/ozon-front",
 		demoLink: "https://fake-ozon.vercel.app/",
+
+		githubBackendLink: "https://github.com/Artuchka/ozon-server",
+		backendDocsLink: "https://busy-red-zebra-robe.cyclic.app/api/v1/docs/",
 		img: ozonImg,
 		uuid: crypto.randomUUID(),
 
@@ -70,8 +75,35 @@ const defaultProjects: ProjectItem[] = [
 			],
 		},
 
-		description: `My motivation was to showcase part(!) of my cool skills on creating SinglePageApp via React library. Marketplace has Stripe payment system, you can refund paid orders.
-	  	 And you're welocme for creating new products (loggined as vendor). Then there's access to view statistics for you products (overall AND product detailed). Bookmark your loved items. Feel free to add reviews to products. Select your delivery point (via Yandex maps)`,
+		description: `My motivation was to showcase part(!) of my cool skills on creating SinglePageApp via React library.
+
+		- Marketplace has Stripe payment system, you can refund paid orders.
+		- And you're welocme for creating new products (loggined as vendor).
+		- Then there's access to view statistics for you products (overall AND product detailed).
+		- Bookmark your loved items.
+		- Feel free to add reviews to products. Select your delivery point (via Yandex maps)
+		
+
+		   File structure pattern is well known and common:
+
+		   <route_name>Router.js at /routers folder for setting up routes
+		   <route_name>Controller.js at /controllers folder for setting up controllers of specified route
+		   <route_name>Model.js at /models folder for setting up MongoDB schema
+		   Cloudinary is used for storing uploaded images and videos. Chose to use it because it has more servers than I do on :D (leading to faster content delivery)
+		   
+
+		   "Imagemin" is used for minifying images before uploading. Sometimes it can compress images by up to 70%
+
+		   "bcryptjs" is used for hashing passwords with salt before storing them in Database
+
+		   "jsonwebtoken" is used for creating/decoding crypted Tokens, safely containing info about current user. JWT are stored in cookies.
+
+		   I had to use "node-fetch" library to access Dadata API (map reverse geocoder), because it asks for mode: "cors" in request config, which is not accesble in well-known Axios, which uses a XMLHttpRequest under the hood, not Request as fetch. 
+
+		   "Nodemailer" is used for sending transactional Emails via SMTP server (from SendinBlue) There are also used SendGrid and Sendinblue libraries for sending emails via API keys 
+
+		   For hosting the server I chose "cyclic.sh", becauser it has generous free tier with no sleep
+		   `,
 	},
 
 	{

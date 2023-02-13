@@ -28,6 +28,14 @@ const style = {
 		gap: "1rem",
 		padding: "1rem",
 	}),
+
+	linksWrapper: css({
+		display: "grid",
+		gridTemplateColumns: "repeat(2,1fr)",
+		width: "max-content",
+		rowGap: "0.3rem",
+		columnGap: "1rem",
+	}),
 	stackWrapper: css({
 		display: "flex",
 		gap: "0.7rem",
@@ -45,7 +53,17 @@ const style = {
 }
 
 export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
-	const { title, githubLink, demoLink, img, uuid, stack, description } = props
+	const {
+		title,
+		githubLink,
+		demoLink,
+		img,
+		uuid,
+		stack,
+		description,
+		githubBackendLink,
+		backendDocsLink,
+	} = props
 	// title: string
 	// githubLink: string
 	// demoLink: string
@@ -57,7 +75,7 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 	return (
 		<div css={style.wrapper}>
 			<h2>{title}</h2>
-			<div className="buttons">
+			<div className="buttons" css={style.linksWrapper}>
 				<a target="_blank" href={githubLink}>
 					<button css={btnLight}>
 						<BsGithub /> Github
@@ -68,6 +86,21 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 						<AiOutlineEye /> Demo
 					</button>
 				</a>
+
+				{githubBackendLink && (
+					<a target="_blank" href={githubBackendLink}>
+						<button css={btnLight}>
+							<AiOutlineEye /> Github Backend
+						</button>
+					</a>
+				)}
+				{backendDocsLink && (
+					<a target="_blank" href={backendDocsLink}>
+						<button css={btnLight}>
+							<AiOutlineEye /> Backend Docs
+						</button>
+					</a>
+				)}
 			</div>
 
 			<div className="stack-wrapper">
@@ -139,6 +172,7 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 				<h4>Description</h4>
 				<div className="text">
 					{description?.split("\n").map((item) => {
+						if (item.length === 0) return <br />
 						return <p>{item}</p>
 					})}
 				</div>
