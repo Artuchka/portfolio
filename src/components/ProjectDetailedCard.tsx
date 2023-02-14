@@ -6,6 +6,7 @@ import { BsGithub } from "react-icons/bs"
 import { AiOutlineEye } from "react-icons/ai"
 import { css } from "@emotion/react"
 import { primaryText } from "../styles/emotion/vars"
+import { mq } from "../styles/motion"
 
 const variatnsItem: Variants = {
 	visible: (i: number) => {
@@ -31,10 +32,13 @@ const style = {
 
 	linksWrapper: css({
 		display: "grid",
-		gridTemplateColumns: "repeat(2,1fr)",
+		gridTemplateColumns: "repeat(1,1fr)",
 		width: "max-content",
 		rowGap: "0.3rem",
 		columnGap: "1rem",
+		[mq[1]]: {
+			gridTemplateColumns: "repeat(2,1fr)",
+		},
 	}),
 	stackWrapper: css({
 		display: "flex",

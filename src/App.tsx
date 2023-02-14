@@ -6,6 +6,7 @@ import { NotFound } from "./pages/NotFound"
 import { About } from "./pages/About"
 import { AnimatePresence } from "framer-motion"
 import { Projects } from "./pages/Projects"
+import { Resume } from "./pages/Resume"
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path="/" element={<Landing />}></Route>
 					<Route path="/about" element={<About />}></Route>
 					<Route path="/projects" element={<Projects />}></Route>
+					<Route path="/resume" element={<Resume />}></Route>
 					<Route path="*" element={<NotFound />}></Route>
 				</Route>
 			</Routes>
