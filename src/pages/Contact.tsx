@@ -7,6 +7,8 @@ import { Link } from "react-router-dom"
 import cursorImg from "./../assets/react.svg"
 import { mq } from "../styles/motion"
 
+const linksDelay = 0.2
+
 const links = [
 	{
 		Component: <TelegramIcon />,
@@ -24,12 +26,21 @@ const links = [
 
 export const Contact = () => {
 	return (
-		<div>
+		<div
+			css={{
+				paddingBottom: "5rem",
+				overflow: "hidden",
+			}}
+		>
 			<h1>Contact</h1>
 
 			<div css={style.linksWrapper}>
 				{links.map(({ Component, href }) => {
-					return <a href={href}>{Component}</a>
+					return (
+						<a key={href} target="_blank" href={href}>
+							{Component}
+						</a>
+					)
 				})}
 			</div>
 		</div>
@@ -69,6 +80,13 @@ function TelegramIcon() {
 			xmlns="http://www.w3.org/2000/svg"
 			css={style.path}
 			fill="none"
+			initial={{ x: "-100vw" }}
+			animate={{ x: "0" }}
+			transition={{
+				duration: 0.6,
+				ease: [0.53, 0.1, 0.34, 1.03],
+				delay: linksDelay,
+			}}
 		>
 			<motion.path
 				initial={{ strokeDasharray: 30 }}
@@ -97,7 +115,13 @@ function VKIcon() {
 			xmlns="http://www.w3.org/2000/svg"
 			css={style.path}
 			fill="none"
+			initial={{ x: "100vw" }}
 			animate={{ x: "-8px" }}
+			transition={{
+				duration: 0.6,
+				ease: [0.53, 0.1, 0.34, 1.03],
+				delay: linksDelay,
+			}}
 		>
 			<motion.path
 				initial={{ strokeDashoffset: 0 }}
@@ -127,6 +151,13 @@ function GmailIcon() {
 			xmlns="http://www.w3.org/2000/svg"
 			css={style.path}
 			fill="none"
+			initial={{ y: "-100vh" }}
+			animate={{ y: "0" }}
+			transition={{
+				duration: 0.6,
+				ease: [0.53, 0.1, 0.34, 1.03],
+				delay: linksDelay,
+			}}
 		>
 			<GmailPath d="m49.845942,69.691932c-0.336333,0 -0.675869,-0.105705 -0.960951,-0.320317l-25.333877,-18.97238c-0.707901,-0.531726 -0.852043,-1.534319 -0.32352,-2.242219c0.531726,-0.704698 1.534319,-0.855247 2.242219,-0.32352l24.376129,18.25487l24.372926,-18.25487c0.707901,-0.528523 1.713696,-0.38438 2.242219,0.32352c0.531726,0.707901 0.38438,1.713696 -0.32352,2.242219l-25.330674,18.97238c-0.285082,0.214612 -0.624618,0.320317 -0.960951,0.320317z" />
 			<GmailPath d="m26.11365,52.317935l-24.315269,-18.210025l0,-9.231538c0,-6.124462 4.996946,-11.108596 11.140628,-11.108596c2.379956,0 4.670223,0.771964 6.620954,2.23261l6.550484,4.913664l0,31.403886l0.003203,0zm-21.112098,-19.811611l17.908927,13.411676l0,-23.402365l-5.269216,-3.949509c-1.393379,-1.04103 -3.02059,-1.595179 -4.702255,-1.595179c-3.818179,0 -7.937457,3.023793 -7.937457,7.905425l0,7.629953z" />

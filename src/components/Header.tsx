@@ -58,13 +58,16 @@ const style = {
 		},
 
 		".list": {
-			gap: "1rem",
+			gap: "3rem",
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
 			position: "relative",
 			top: "1.5rem",
+			a: {
+				fontSize: "2rem",
+			},
 		},
 		".closeButton": {
 			border: "none",
@@ -115,7 +118,7 @@ export const Header = () => {
 		})
 		mobileLinksControls.set({
 			x: "0",
-			y: "-100vh",
+			y: "-200vh",
 		})
 	}
 	return (
@@ -142,7 +145,7 @@ export const Header = () => {
 					</div>
 					{createPortal(
 						<motion.div
-							initial={{ y: "-100vh" }}
+							initial={{ y: "-200vh" }}
 							animate={mobileLinksControls}
 							transition={{
 								duration: 0.6,

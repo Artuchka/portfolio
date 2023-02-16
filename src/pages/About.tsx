@@ -12,6 +12,7 @@ const style = {
 		justifyContent: "center",
 		flexDirection: "column",
 		gap: "1rem",
+		paddingBottom: "5rem",
 		[mq[1]]: {
 			gap: "2rem",
 		},

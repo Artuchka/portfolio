@@ -11,7 +11,7 @@ import { NotFound } from "../pages/NotFound"
 
 const style = {
 	layout: css({
-		minHeight: "120vh",
+		minHeight: "100vh",
 		fontWeight: 100,
 		backgroundColor: primaryBg,
 	}),
@@ -49,9 +49,9 @@ export const DefaultLayout: FC = () => {
 			<Header />
 			<motion.div
 				css={css({
-					minHeight: "120vh",
+					// minHeight: "100vh",
 					maxWidth: "900px",
-					paddingTop: "5rem ",
+					paddingTop: "3rem ",
 					paddingInline: "3rem ",
 					marginInline: "auto",
 					color: primaryText,

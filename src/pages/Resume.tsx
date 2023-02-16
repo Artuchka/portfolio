@@ -15,7 +15,11 @@ export const Resume = () => {
 		})
 	}
 	return (
-		<div>
+		<div
+			css={{
+				paddingBottom: "5rem",
+			}}
+		>
 			<h1>Resume</h1>
 
 			<button css={btn} onClick={onButtonClick}>
