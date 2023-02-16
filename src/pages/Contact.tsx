@@ -1,4 +1,4 @@
-import React, { Component, FC } from "react"
+import React, { Component, FC, useEffect } from "react"
 import { motion } from "framer-motion"
 import { css } from "@emotion/react"
 import { telegramColor } from "../styles/emotion/vars"
@@ -25,6 +25,9 @@ const links = [
 ]
 
 export const Contact = () => {
+	useEffect(() => {
+		document.title = "Contact"
+	}, [])
 	return (
 		<div
 			css={{

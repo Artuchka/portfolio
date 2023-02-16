@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { motion } from "framer-motion"
 import pdfFile from "./../assets/resume.pdf"
 import { btn } from "../styles/emotion/btn"
 import { css } from "@emotion/react"
 
 export const Resume = () => {
+	useEffect(() => {
+		document.title = "Resume"
+	}, [])
 	const onButtonClick = () => {
 		fetch(pdfFile).then((response) => {
 			response.blob().then((blob) => {

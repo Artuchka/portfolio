@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Variants, motion } from "framer-motion"
 import { css } from "@emotion/react"
 import { TextAnimation } from "../components/TextAnimation"
@@ -27,6 +27,9 @@ const varaints = {
 } as Variants
 
 export const Landing = () => {
+	useEffect(() => {
+		document.title = "Artuchka"
+	}, [])
 	return (
 		<div>
 			<div css={style.wrapper}>

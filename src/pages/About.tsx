@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import avatarImage from "./../assets/avatar.jpeg"
 import { Variants, motion } from "framer-motion"
 import { css } from "@emotion/react"
@@ -94,6 +94,9 @@ const variatnsItem: Variants = {
 }
 
 export const About = () => {
+	useEffect(() => {
+		document.title = "About me"
+	}, [])
 	return (
 		<div css={style.wrapper}>
 			<motion.div css={style.aboutMe}>

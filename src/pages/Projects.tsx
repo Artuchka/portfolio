@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ProjectsGrid } from "../components/ProjectsGrid"
 import { DetailsSlider } from "../components/DetailsSlider"
 import { createPortal } from "react-dom"
@@ -8,6 +8,9 @@ import { AnimatePresence } from "framer-motion"
 import { css } from "@emotion/react"
 
 export const Projects = () => {
+	useEffect(() => {
+		document.title = "Projects"
+	}, [])
 	const isListingOpen = useRecoilValue(listingOpenState)
 	return (
 		<div>

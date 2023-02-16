@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { btn } from "../styles/emotion/btn"
 import { css } from "@emotion/react"
 import { motion } from "framer-motion"
@@ -16,6 +16,9 @@ const style = {
 }
 
 export const NotFound = () => {
+	useEffect(() => {
+		document.title = "404 page"
+	}, [])
 	return (
 		<div css={style.wrapper}>
 			<h1>Looks like we lost that page…</h1>
