@@ -5,6 +5,7 @@ import { telegramColor } from "../styles/emotion/vars"
 import { HoverButton } from "../components/HoverButton"
 import { Link } from "react-router-dom"
 import cursorImg from "./../assets/react.svg"
+import { mq } from "../styles/motion"
 
 const links = [
 	{
@@ -52,6 +53,10 @@ const style = {
 		gap: "2rem",
 		alignItems: "center",
 		justifyContent: "center",
+		flexDirection: "column",
+		[mq[0]]: {
+			flexDirection: "row",
+		},
 	}),
 }
 function TelegramIcon() {
