@@ -57,6 +57,7 @@ const style = {
 		scrollbar("0.5rem", "rectangle"),
 		css({
 			backgroundColor: cardBg,
+			backdropFilter: "blur(10px)",
 			minWidth: "70vw",
 			maxHeight: "70vh",
 			minHeight: "40vh",
@@ -218,9 +219,9 @@ export const DetailsSlider = () => {
 			showSelectedItem()
 		}
 
-		if (diff < 0 && Math.abs(diff) > itemWidth / 4) {
+		if (diff < 0 && Math.abs(diff) > itemWidth / 2) {
 			handlePrev()
-		} else if (diff > 0 && diff > itemWidth / 4) {
+		} else if (diff > 0 && diff > itemWidth / 2) {
 			handleNext()
 		} else {
 			showSelectedItem()
@@ -238,9 +239,9 @@ export const DetailsSlider = () => {
 			showSelectedItem()
 		}
 
-		if (diff < 0 && Math.abs(diff) > itemWidth / 4) {
+		if (diff < 0 && Math.abs(diff) > itemWidth / 2) {
 			handlePrev()
-		} else if (diff > 0 && diff > itemWidth / 4) {
+		} else if (diff > 0 && diff > itemWidth / 2) {
 			handleNext()
 		} else {
 			showSelectedItem()
@@ -280,11 +281,18 @@ export const DetailsSlider = () => {
 				{projects.map((card, i) => {
 					return (
 						<motion.div
-							data-uuid={card.uuid}
+							// data-uuid={card.uuid}
 							key={card.uuid}
 							css={style.listingItem}
 						>
-							<h1>#{i + 1}</h1>
+							<h1
+								css={css({
+									color: primaryText,
+									paddingLeft: "1rem",
+								})}
+							>
+								#{i + 1}
+							</h1>
 							<ProjectDetailedCard {...card} />
 						</motion.div>
 					)

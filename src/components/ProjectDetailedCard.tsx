@@ -26,8 +26,13 @@ const style = {
 		color: primaryText,
 		display: "flex",
 		flexDirection: "column",
-		gap: "1rem",
+		gap: "1.5rem",
 		padding: "1rem",
+		".stack-wrapper": {
+			display: "flex",
+			flexDirection: "column",
+			gap: "1rem",
+		},
 	}),
 
 	linksWrapper: css({
@@ -53,6 +58,12 @@ const style = {
 		color: primaryText,
 		textDecoration: "none",
 		display: "inline-block",
+	}),
+	sectionWrapper: css({
+		display: "flex",
+		gap: "0.5rem",
+		// paddingInline: "1rem",
+		flexDirection: "column",
 	}),
 }
 
@@ -108,11 +119,9 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 			</div>
 
 			<div className="stack-wrapper">
-				<h4>Stack</h4>
-
 				{Number(stack?.front?.length) > 0 && (
-					<div className="frontend">
-						<h5>Frontend</h5>
+					<div css={style.sectionWrapper} className="frontend">
+						<h4>Frontend</h4>
 						<motion.div css={style.stackWrapper}>
 							{stack?.front?.map((title, index) => {
 								return (
@@ -132,8 +141,8 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 					</div>
 				)}
 				{Number(stack?.back?.length) > 0 && (
-					<div className="backend">
-						<h5>Backend</h5>
+					<div css={style.sectionWrapper} className="backend">
+						<h4>Backend</h4>
 						<motion.div css={style.stackWrapper}>
 							{stack?.back?.map((title, index) => {
 								return (
@@ -153,32 +162,38 @@ export const ProjectDetailedCard: FC<ProjectItem> = (props) => {
 					</div>
 				)}
 				{Number(stack?.overall?.length) > 0 && (
-					<motion.div css={style.stackWrapper}>
-						{stack?.overall?.map((title, index) => {
-							return (
-								<motion.div
-									variants={variatnsItem}
-									initial="hidden"
-									animate="visible"
-									custom={index}
-									key={title}
-									css={style.stackItem}
-								>
-									{title}
-								</motion.div>
-							)
-						})}
-					</motion.div>
+					<div css={style.sectionWrapper}>
+						<h4>Stack</h4>
+						<motion.div css={style.stackWrapper}>
+							{stack?.overall?.map((title, index) => {
+								return (
+									<motion.div
+										variants={variatnsItem}
+										initial="hidden"
+										animate="visible"
+										custom={index}
+										key={title}
+										css={style.stackItem}
+									>
+										{title}
+									</motion.div>
+								)
+							})}
+						</motion.div>
+					</div>
 				)}
 			</div>
 
-			<div className="description">
+			<div className="description" css={style.sectionWrapper}>
 				<h4>Description</h4>
 				<div className="text">
-					{description?.split("\n").map((item) => {
-						if (item.length === 0) return <br />
-						return <p>{item}</p>
-					})}
+					{description
+						?.trim()
+						?.split("\n")
+						.map((item) => {
+							if (item.length === 0) return <br />
+							return <p>{item}</p>
+						})}
 				</div>
 			</div>
 		</div>

@@ -232,7 +232,7 @@ const defaultProjects: ProjectItem[] = [
 			],
 		},
 
-		description: `		
+		description: `
  I've wanted to implement Component paradigma, so used HTML Templates
  Using them turned out to be fun and really soul-warming
  All Calendar and Modal funcitonality I've wrapped in Class so it's possible to recreate same Objects with same methods and fields 
