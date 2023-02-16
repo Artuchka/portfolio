@@ -13,6 +13,7 @@ const style = {
 	layout: css({
 		minHeight: "100vh",
 		fontWeight: 100,
+		overflow: "hidden",
 		backgroundColor: primaryBg,
 	}),
 }

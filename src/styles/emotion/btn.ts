@@ -10,7 +10,7 @@ export const btn = css({
 	boxShadow:
 		"rgb(106 78 255 / 20%) 0px 3px 6px 0px, rgb(0 0 0 / 10%) 0px 0px 0px 0px inset",
 	cursor: "pointer",
-	transition: "all 0.2s ease-in-out",
+	// transition: "all 0.2s ease-in-out",
 	textDecoration: "none",
 	color: "white",
 	fontWeight: 400,

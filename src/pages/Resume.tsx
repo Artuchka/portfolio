@@ -1,6 +1,8 @@
 import React from "react"
+import { motion } from "framer-motion"
 import pdfFile from "./../assets/resume.pdf"
 import { btn } from "../styles/emotion/btn"
+import { css } from "@emotion/react"
 
 export const Resume = () => {
 	const onButtonClick = () => {
@@ -22,9 +24,23 @@ export const Resume = () => {
 		>
 			<h1>Resume</h1>
 
-			<button css={btn} onClick={onButtonClick}>
+			<motion.button
+				css={[
+					btn,
+					css({
+						transformOrigin: "center",
+					}),
+				]}
+				initial={{ scale: 0.3, opacity: 0 }}
+				animate={{ scale: 1, opacity: 1 }}
+				transition={{
+					duration: 0.5,
+					ease: "easeInOut",
+				}}
+				onClick={onButtonClick}
+			>
 				Download PDF
-			</button>
+			</motion.button>
 		</div>
 	)
 }

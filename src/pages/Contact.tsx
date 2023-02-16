@@ -29,7 +29,6 @@ export const Contact = () => {
 		<div
 			css={{
 				paddingBottom: "5rem",
-				overflow: "hidden",
 			}}
 		>
 			<h1>Contact</h1>
