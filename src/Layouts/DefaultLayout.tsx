@@ -8,6 +8,8 @@ import { primaryBg, primaryText } from "../styles/emotion/vars"
 import { Landing } from "../pages/Landing"
 import { About } from "../pages/About"
 import { NotFound } from "../pages/NotFound"
+import { inject } from "@vercel/analytics"
+inject()
 
 const style = {
 	layout: css({
